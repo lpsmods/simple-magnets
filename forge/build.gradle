@@ -4,7 +4,7 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
 }
 base {
-    archivesName = "${mod_name}-forge-${minecraft_version}"
+    archivesName = "${mod_id}-forge-${minecraft_version}"
 }
 mixin {
     config("${mod_id}.mixins.json")
@@ -72,6 +72,8 @@ dependencies {
 
     // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+
+    implementation "com.mrcrayfish:framework-forge:${minecraft_version}-${framework_version}"
 }
 
 publishing {

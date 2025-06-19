@@ -3,27 +3,30 @@ package dev.lpsmods.magnet.block;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.lpsmods.magnet.core.ModUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.phys.Vec3;
 
 public class MagnetBlock extends DirectionalBlock {
-    public static final MapCodec<MagnetBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
-        return instance.group(
-                Codec.FLOAT.fieldOf("radius").forGetter((MagnetBlock o) -> o.radius),
-                Codec.INT.fieldOf("delay").forGetter((MagnetBlock o) -> o.delay),
-                createSettingsCodec()
-        ).apply(instance, MagnetBlock::new);
+    public static final MapCodec<MagnetBlock> CODEC = RecordCodecBuilder.mapCodec((p_308861_) -> {
+        return p_308861_.group(
+                Codec.FLOAT.fieldOf("radius").forGetter((blk) -> {return blk.radius;}),
+                Codec.INT.fieldOf("delay").forGetter((blk) -> {return blk.delay;})
+                , propertiesCodec()).apply(p_308861_, MagnetBlock::new);
     });
+
     public static final BooleanProperty POWERED = BooleanProperty.create("powered");
     public float radius;
     public int delay;
@@ -35,58 +38,36 @@ public class MagnetBlock extends DirectionalBlock {
         this.delay = delay;
     }
 
-    @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, ctx.getNearestLookingDirection().getOpposite())).setValue(POWERED, false);
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite())).setValue(POWERED, false);
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(new Property[]{FACING, POWERED});
     }
 
     @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean pMovedByPiston) {
         if (level.isClientSide) {
             return;
         }
         boolean bl = state.getValue(POWERED);
-        if (bl != level.isReceivingRedstonePower(pos)) {
+        if (bl != level.hasNeighborSignal(pos)) {
             if (bl) {
                 level.scheduleTick(pos, this, this.delay);
             } else {
-                level.setBlock(pos, (BlockState)state.cycle(POWERED), Block.NOTIFY_LISTENERS);
-                this.teleport(state, level, pos);
+                level.setBlock(pos, (BlockState)state.cycle(POWERED), 2);
+                Direction facing = state.getValue(FACING);
+                Vec3 facingPos = pos.relative(facing).getBottomCenter();
+                ModUtils.teleportMagnetic(this.radius, level, facingPos, facing.equals(Direction.DOWN));
             }
         }
     }
 
-    @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.get(POWERED).booleanValue() && !world.isReceivingRedstonePower(pos)) {
-            world.setBlockState(pos, (BlockState)state.cycle(POWERED), Block.NOTIFY_LISTENERS);
+    protected void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if ((Boolean)pState.getValue(POWERED) && !pLevel.hasNeighborSignal(pPos)) {
+            pLevel.setBlock(pPos, (BlockState)pState.cycle(POWERED), 2);
         }
-    }
-
-    public Vec3d teleportPos(BlockState state, BlockPos pos) {
-        BlockPos pos2 = pos.offset(state.get(FACING));
-        return new Vec3d(pos2.getX(), pos2.getY(), pos2.getZ());
-    }
-
-    public void teleport(BlockState state, World world, BlockPos pos) {
-        Vec3d vecPos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
-        List<ItemEntity> items = world.getEntitiesByType(EntityType.ITEM, Box.of(vecPos, this.radius*2, this.radius*2, this.radius*2), (e) -> {
-            return true;
-        });
-        Vec3d vecPos2 = this.teleportPos(state, pos).add(0.5, 0, 0.5);
-        for (ItemEntity item : items) {
-            item.setPosition(vecPos2);
-        }
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, POWERED);
-    }
-
-    @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-        return false;
     }
 
     @Override

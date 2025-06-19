@@ -1,60 +1,63 @@
 package dev.lpsmods.magnet.item;
 
-import net.fabricmc.yarn.constants.MiningLevels;
-import net.minecraft.item.Items;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Lazy;
-import net.minecraft.world.item.Tier;
 
+import dev.lpsmods.magnet.core.ModTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
+
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public enum ModTiers implements Tier {
-    COPPER(MiningLevels.IRON, 185, 12.0f, 0.0f, 22, () -> Ingredient.ofItems(Items.COPPER_INGOT));
+    COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 185, 12.0f, 0.0f, 22, () -> Ingredient.of(Items.COPPER_INGOT));
 
-    private final int miningLevel;
-    private final int itemDurability;
-    private final float miningSpeed;
-    private final float attackDamage;
-    private final int enchantability;
-    private final Lazy<Ingredient> repairIngredient;
+    private final TagKey<Block> incorrectBlocksForDrops;
+    private final int uses;
+    private final float speed;
+    private final float damage;
+    private final int enchantmentValue;
+    private final Supplier<Ingredient> repairIngredient;
 
-    private ModTiers(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
-        this.miningLevel = miningLevel;
-        this.itemDurability = itemDurability;
-        this.miningSpeed = miningSpeed;
-        this.attackDamage = attackDamage;
-        this.enchantability = enchantability;
-        this.repairIngredient = new Lazy<Ingredient>(repairIngredient);
+    private ModTiers(TagKey pIncorrectBlockForDrops, int pUses, float pSpeed, float pDamage, int pEnchantmentValue, Supplier<Ingredient> pRepairIngredient) {
+        this.incorrectBlocksForDrops = pIncorrectBlockForDrops;
+        this.uses = pUses;
+        this.speed = pSpeed;
+        this.damage = pDamage;
+        this.enchantmentValue = pEnchantmentValue;
+        Objects.requireNonNull(pRepairIngredient);
+        this.repairIngredient = pRepairIngredient;
     }
 
     @Override
-    public int getDurability() {
-        return this.itemDurability;
+    public int getUses() {
+        return 0;
     }
 
     @Override
-    public float getMiningSpeedMultiplier() {
-        return this.miningSpeed;
+    public float getSpeed() {
+        return 0;
     }
 
     @Override
-    public float getAttackDamage() {
-        return this.attackDamage;
+    public float getAttackDamageBonus() {
+        return 0;
     }
 
     @Override
-    public int getMiningLevel() {
-        return this.miningLevel;
+    public TagKey<Block> getIncorrectBlocksForDrops() {
+        return null;
     }
 
     @Override
-    public int getEnchantability() {
-        return this.enchantability;
+    public int getEnchantmentValue() {
+        return 0;
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return this.repairIngredient.get();
+        return null;
     }
 }

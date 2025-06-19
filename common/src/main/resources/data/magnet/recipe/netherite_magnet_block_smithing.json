@@ -7,7 +7,7 @@
       "item": "magnet:diamond_magnet_block"
     },
     "result": {
-      "item": "magnet:netherite_magnet_block"
+      "id": "magnet:netherite_magnet_block"
     },
     "template": {
       "item": "minecraft:netherite_upgrade_smithing_template"

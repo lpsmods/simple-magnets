@@ -4,5 +4,5 @@
   "key": {
     "#": { "item": "magnet:copper_magnet" }
   },
-  "result": { "item": "magnet:copper_magnet_block" }
+  "result": { "id": "magnet:copper_magnet_block" }
 }

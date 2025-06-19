@@ -4,5 +4,5 @@
     { "item": "minecraft:gold_ingot" },
     { "item": "magnet:iron_magnet" }
   ],
-  "result": { "item": "magnet:gold_magnet" }
+  "result": { "id": "magnet:gold_magnet" }
 }

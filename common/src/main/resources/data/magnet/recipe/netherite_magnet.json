@@ -4,5 +4,5 @@
     { "item": "minecraft:netherite_ingot" },
     { "item": "magnet:diamond_magnet" }
   ],
-  "result": { "item": "magnet:netherite_magnet" }
+  "result": { "id": "magnet:netherite_magnet" }
 }

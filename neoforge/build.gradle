@@ -36,4 +36,8 @@ neoForge {
     }
 }
 
+dependencies {
+    implementation "com.mrcrayfish:framework-neoforge:${minecraft_version}-${framework_version}"
+}
+
 sourceSets.main.resources { srcDir 'src/generated/resources' }

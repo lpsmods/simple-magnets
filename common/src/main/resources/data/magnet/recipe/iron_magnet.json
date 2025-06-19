@@ -6,5 +6,5 @@
     "R": { "item": "minecraft:red_dye" },
     "I": { "item": "minecraft:iron_ingot" }
   },
-  "result": { "item": "magnet:iron_magnet" }
+  "result": { "id": "magnet:iron_magnet" }
 }
