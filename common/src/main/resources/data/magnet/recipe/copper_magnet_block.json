@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": ["##", "##"],
   "key": {
-    "#": { "item": "magnet:copper_magnet" }
+    "#": "magnet:copper_magnet"
   },
   "result": { "id": "magnet:copper_magnet_block" }
 }

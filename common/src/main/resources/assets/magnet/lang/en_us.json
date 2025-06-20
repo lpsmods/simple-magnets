@@ -5,9 +5,10 @@
   "item.magnet.gold_magnet": "Gold Magnet",
   "item.magnet.iron_magnet": "Iron Magnet",
   "item.magnet.netherite_magnet": "Netherite Magnet",
-  "block.magnet.copper_magnet_block": "Copper Magnet Block",
-  "block.magnet.diamond_magnet_block": "Diamond Magnet Block",
-  "block.magnet.gold_magnet_block": "Gold Magnet Block",
-  "block.magnet.iron_magnet_block": "Iron Magnet Block",
-  "block.magnet.netherite_magnet_block": "Netherite Magnet Block"
+  "item.magnet.copper_magnet_block": "Copper Magnet Block",
+  "item.magnet.diamond_magnet_block": "Diamond Magnet Block",
+  "item.magnet.gold_magnet_block": "Gold Magnet Block",
+  "item.magnet.iron_magnet_block": "Iron Magnet Block",
+  "item.magnet.netherite_magnet_block": "Netherite Magnet Block",
+  "tag.item.magnet.copper_tool_materials": "Copper Tool Materials"
 }

@@ -1,8 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "minecraft:copper_ingot" },
-    { "item": "magnet:gold_magnet" }
-  ],
+  "ingredients": ["minecraft:copper_ingot", "magnet:gold_magnet"],
   "result": { "id": "magnet:copper_magnet" }
 }
