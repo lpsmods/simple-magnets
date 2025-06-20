@@ -15,7 +15,7 @@ public class ModItems {
     public static final RegistryEntry<Item> NETHERITE_MAGNET;
 
     private static RegistryEntry<Item> magnet(String name, ToolMaterial toolMaterial, double radius, int delay) {
-        return RegistryEntry.item(ModUtils.makeId(name), properties -> new MagnetItem(toolMaterial, delay, radius, properties), new Item.Properties().stacksTo(1));
+        return RegistryEntry.item(ModUtils.makeId(name), properties -> new MagnetItem(toolMaterial, delay, radius, properties), () -> new Item.Properties().stacksTo(1));
     }
 
     static {

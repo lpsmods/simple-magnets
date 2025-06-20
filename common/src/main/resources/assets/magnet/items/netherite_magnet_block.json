@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "magnet:block/netherite_magnet_block_inventory"
+  }
+}

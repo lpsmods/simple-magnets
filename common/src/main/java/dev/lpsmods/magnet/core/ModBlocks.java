@@ -16,7 +16,7 @@ public class ModBlocks {
     public static final RegistryEntry<Block> NETHERITE_MAGNET_BLOCK;
 
     private static RegistryEntry<Block> magnetBlock(String name, float radius, int delay) {
-        return RegistryEntry.blockWithItem(ModUtils.makeId(name), properties -> new MagnetBlock(radius, delay, properties), BlockBehaviour.Properties.of().destroyTime(1.5f).forceSolidOn().pushReaction(PushReaction.NORMAL).randomTicks());
+        return RegistryEntry.blockWithItem(ModUtils.makeId(name), properties -> new MagnetBlock(radius, delay, properties), () -> BlockBehaviour.Properties.of().destroyTime(1.5f).forceSolidOn().pushReaction(PushReaction.NORMAL).randomTicks());
     }
 
     static {

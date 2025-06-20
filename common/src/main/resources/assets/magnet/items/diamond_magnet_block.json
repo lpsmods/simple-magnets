@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "magnet:block/diamond_magnet_block_inventory"
+  }
+}
