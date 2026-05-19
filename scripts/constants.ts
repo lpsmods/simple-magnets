@@ -1,1 +1,1 @@
-export const PROJECT_ID = 'lpsm_simple_magnets';
+export const PROJECT_ID = "lpsm_simple_magnets";

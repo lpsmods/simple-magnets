@@ -33,10 +33,10 @@ export class MagnetBlockComponent {
     if (!pos) return;
     var { x, y, z } = pos;
     dim.runCommand(
-      `execute positioned ${loc.x} ${loc.y} ${loc.z} run tp @e[type=item,r=${this.radius}] ~${x} ~${y} ~${z}`
+      `execute positioned ${loc.x} ${loc.y} ${loc.z} run tp @e[type=item,r=${this.radius}] ~${x} ~${y} ~${z}`,
     );
     dim.runCommand(
-      `execute positioned ${loc.x} ${loc.y} ${loc.z} run tp @e[type=xp_orb,r=${this.radius}] ~${x} ~${y} ~${z}`
+      `execute positioned ${loc.x} ${loc.y} ${loc.z} run tp @e[type=xp_orb,r=${this.radius}] ~${x} ~${y} ~${z}`,
     );
   }
   onTick(event: BlockComponentTickEvent, args: CustomComponentParameters): void {
