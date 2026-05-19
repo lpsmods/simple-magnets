@@ -1,6 +1,0 @@
-{
-  "type": "minecraft:crafting_shaped",
-  "pattern": ["##", "##"],
-  "key": { "#": { "item": "magnet:diamond_magnet" } },
-  "result": { "id": "magnet:diamond_magnet_block" }
-}

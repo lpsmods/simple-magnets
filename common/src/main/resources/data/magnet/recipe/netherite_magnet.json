@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "minecraft:netherite_ingot" },
-    { "item": "magnet:diamond_magnet" }
-  ],
-  "result": { "id": "magnet:netherite_magnet" }
-}

@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "Simple Magnets Add-On",
+      "path": ".",
+    },
+  ],
+  "settings": {
+    "files.associations": {
+      "*.json": "jsonc",
+    },
+  },
+}

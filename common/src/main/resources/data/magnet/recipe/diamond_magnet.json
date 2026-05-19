@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "minecraft:diamond" },
-    { "item": "magnet:copper_magnet" }
-  ],
-  "result": { "id": "magnet:diamond_magnet" }
-}

@@ -4,32 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [neoforge-1.2.0] (1.21) - 6/19/2025
-
-### General
-
-- Initial release
-
-## [forge-1.2.0] (1.21) - 6/19/2025
-
-### General
-
-- Initial release
-
-## [fabric-1.2.0] (1.21) - 6/19/2025
-
-### General
-
-- Updated for Minecraft 1.21
-- Now requires Framework
-- Magnets now attract experience orbs.
-- Magnet items will only attract a specific item if you have room for it in your inventory.
-
-### Technical
-
-- Added `magnet:magnetic` entity type tag which contains all entities that are attracted when using a magnet.
-
-## [bedrock-1.3.0] - 8/18/2024
+## [1.3.0] () - 8-18-2024
 
 ### General
 
@@ -37,14 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - No longer requires experimental features.
 - Now uses custom block and item components.
 
-## [bedrock-1.2.0] - 5/22/2023
+## [1.2.0] () - 5-22-2023
 
 ### General
 
 - Updated for 1.19.80
 - All magnets can now teleport Xp Orbs
 
-## [bedrock-1.1.0] - unknown
+## [1.1.0] () - unknown
 
 ### General
 
